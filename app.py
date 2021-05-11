@@ -18,13 +18,13 @@ X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X = sc.fit_transform(X)
-def predict_note_authentication(UserID, Gender,Age,EstimatedSalary):
-  output= model.predict(sc.transform([[Gender,Age,EstimatedSalary]]))
+def predict_note_authentication(Gender, Glucose, BP, SkinThickness, Insulin ,BMI, PedigreeFunction, Age):
+  output= model.predict(sc.transform([[Gender, Glucose, BP, SkinThickness, Insulin ,BMI, PedigreeFunction, Age]]))
   print("Output:", output)
   if output==[1]:
-    prediction="Patient have no disease"
+    prediction="Patient doesn't have any disease"
   else:
-    prediction="Patient has disease"
+    prediction="Patient suffering from disease"
   print(prediction)
   return prediction
 def main():
@@ -42,22 +42,27 @@ def main():
    """
     st.markdown(html_temp,unsafe_allow_html=True)
     st.header("Classifier to predict whether new patient will have that disease or not")
-    
-    st.text_input("Insulin","")
+   
     
     #Gender1 = st.select_slider('Select a Gender Male:1 Female:0',options=['1', '0'])
-    Gender1 = st.number_input('Insert Gender Male:1 Female:0')
-    Age = st.number_input('Insert a Age',18,60)
-   
-    EstimatedSalary = st.number_input("Insert Estimated Salary",15000,150000)
-    resul=""
+    Gender = st.number_input('Insert Gender Male:1 Female:0')
+    Glucose = st.number_input('Insert Glucose amount',18,1000)
+    BP = st.number_input('Insert BP value',18,100)
+    SkinThickness = st.number_input('Insert SkinThickness value',10, 100)
+    Insulin = st.number_input('Insert Insulin value',18, 100)
+    BMI = st.number_input('Insert BMI value',18,600)
+    PidegreeFunction = st.number_input('Insert PidegreeFunction value',0,5)
+    Age = st.number_input('Insert a Age',2,100)
+    
+    
+    result=""
     if st.button("Predict"):
-      result=predict_note_authentication(UserID, Gender1,Age,EstimatedSalary)
+      result=predict_note_authentication(Gender, Glucose, BP, SkinThickness, Insulin ,BMI, PedigreeFunction, Age)
       st.success('Model has predicted {}'.format(result))
       
     if st.button("About"):
-      st.subheader("Developed ")
-      st.subheader("Head , Department of Computer Engineering")
+      st.subheader("Developed by Lalita Sharma")
+      st.subheader("Student , Department of Computer Engineering")
 
 if __name__=='__main__':
   main()
