@@ -51,7 +51,7 @@ def main():
     SkinThickness = st.number_input('Insert SkinThickness value',10, 100)
     Insulin = st.number_input('Insert Insulin value',18, 100)
     BMI = st.number_input('Insert BMI value',18,600)
-    PidegreeFunction = st.number_input('Insert PidegreeFunction value',0,5)
+    PedigreeFunction = st.number_input('Insert PedigreeFunction value',0,5)
     Age = st.number_input('Insert a Age',2,100)
     
     
